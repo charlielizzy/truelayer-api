@@ -43,4 +43,107 @@ module.exports = class Truelayer {
       console.log("Error: ", error);
     }
   }
+
+  async fetchBalance(account_id) {
+    try {
+      const response = await axios.get(
+        `${this.url}/accounts/${account_id}/balance`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
+
+  async fetchAccountTransactions(account_id) {
+    try {
+      const response = await axios.get(
+        `${this.url}/accounts/${account_id}/transactions`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
+
+  async fetchDirectDebits(account_id) {
+    try {
+      const response = await axios.get(
+        `${this.url}/accounts/${account_id}/direct_debits`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
+
+  async fetchIdentityInfo() {
+    try {
+      const response = await axios.get(`${this.url}/info`, {
+        headers: {
+          Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
+
+  async fetchSingleCard(card_id) {
+    try {
+      const response = await axios.get(`${this.url}/cards/${card_id}`, {
+        headers: {
+          Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
+
+  async fetchCardBalance(card_id) {
+    try {
+      const response = await axios.get(`${this.url}/cards/${card_id}/balance`, {
+        headers: {
+          Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
+
+  async fetchCardTransactions(card_id) {
+    try {
+      const response = await axios.get(
+        `${this.url}/cards/${card_id}/transactions`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
 };
