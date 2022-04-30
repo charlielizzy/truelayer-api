@@ -44,7 +44,7 @@ module.exports = class Truelayer {
     }
   }
 
-  async fetchBalance(account_id) {
+  async fetchAccountBalance(account_id) {
     try {
       const response = await axios.get(
         `${this.url}/accounts/${account_id}/balance`,
@@ -142,6 +142,56 @@ module.exports = class Truelayer {
         }
       );
       return response.data;
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
+
+  async verifyAccountHolder(name) {
+    try {
+      const response = await axios.post(
+        "https://api.truelayer-sandbox.com/verification/v1/verify",
+        { name: name },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+          },
+        }
+      );
+      return response.data.verified;
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
+
+  async sendPayment(
+    amount,
+    currency_code,
+    account_holder_name,
+    reference,
+    sort_code,
+    account_number
+  ) {
+    try {
+      const response = await axios.post(
+        "https://pay-api.truelayer-sandbox.com/single-immediate-payments",
+        {
+          amount: amount,
+          currency: currency_code,
+          beneficiary_name: account_holder_name,
+          beneficiary_reference: reference,
+          beneficiary_sort_code: sort_code,
+          beneficiary_account_number: account_number,
+          remitter_reference: "pm remit ref",
+          redirect_uri: "http://localhost:3000/callback",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.PAYMENT_TOKEN}`,
+          },
+        }
+      );
+      return response;
     } catch (error) {
       console.log("Error: ", error);
     }

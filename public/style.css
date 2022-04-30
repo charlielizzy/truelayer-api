@@ -1,0 +1,28 @@
+body {
+  background-color: rgb(19, 121, 110);
+  font-family: "Nunito Sans", sans-serif;
+  color: black;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+h3 {
+  text-align: center;
+  color: rgb(19, 121, 110);
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  width: 350px;
+  min-height: 300px;
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+}
